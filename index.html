@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="pt-BR"><head><meta charset="utf-8"><title>UNO Sequência</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="color-scheme" content="dark"><link rel="manifest" href="manifest.json"><link rel="icon" href="icon-192.png"><link rel="apple-touch-icon" href="icon-192.png"><meta name="mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"><meta name="theme-color" content="#0f3d2e">
+<style>
+:root{--r:#d72600;--y:#ecd407;--g:#379711;--b:#0956bf;--cr:#f6f3ea;color-scheme:dark;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+html{scroll-padding-top:env(safe-area-inset-top,0px);background:#0f3d2e}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html,body{height:100%;margin:0}
+body{font-family:"Trebuchet MS",system-ui,sans-serif;color:#f4f1e8;background:radial-gradient(ellipse at 50% 42%,#1d7253,#0f3d2e 58%,#06241b);overflow:hidden;user-select:none;-webkit-user-select:none}
+#app,.gm,.lb{height:100%}
+button{font:700 15px "Trebuchet MS",system-ui,sans-serif;border:0;border-radius:22px;padding:11px 20px;background:var(--cr);color:#1a1a1a;box-shadow:0 3px 0 #0007;cursor:pointer}
+button:active{transform:translateY(2px);box-shadow:0 1px 0 #0007}
+button.alt{background:var(--y)}
+.lb{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:11px;padding:18px;text-align:center}
+.lb p{margin:0;max-width:320px;line-height:1.4}.sm{font-size:12px;opacity:.8}
+h1{margin:0 0 6px;font:italic 900 70px/1 "Arial Black",Impact,sans-serif;color:var(--y);background:var(--r);padding:10px 30px 12px;border-radius:50%;transform:rotate(-8deg);text-shadow:3px 3px 0 #000;box-shadow:0 6px 0 #0008,inset 0 0 0 4px #fff3}
+h1 small{display:block;font:700 15px "Trebuchet MS",sans-serif;color:#fff;text-shadow:1px 1px 0 #000;margin-top:2px}
+.jn{display:flex;gap:8px}input{width:110px;border-radius:22px;border:0;padding:0 14px;font:700 16px "Trebuchet MS",sans-serif;text-align:center}
+.gm{display:flex;flex-direction:column;padding:8px 6px 8px}
+.op{display:flex;gap:6px}
+.o{flex:1;min-width:0;text-align:center;padding:5px 3px;border-radius:12px;background:#0003;border:2px solid transparent;transition:.2s}
+.o.t{border-color:var(--y);box-shadow:0 0 16px #ecd40799}
+.o small{display:block;font-size:12px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.fan{display:flex;justify-content:center;height:41px;padding-left:16px;margin:3px 0}
+.tb{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;text-align:center;font-size:13px}
+.pl{display:flex;gap:26px;align-items:center}
+.top .cd{width:72px;height:108px;box-shadow:0 0 0 4px var(--k),0 8px 16px #000a;animation:pp .35s ease-out}
+@keyframes pp{from{transform:translateY(46px) scale(.7) rotate(-22deg);opacity:0}}
+.dot{display:inline-block;width:12px;height:12px;border-radius:50%;vertical-align:-1px;border:2px solid #fff}
+.bt{display:flex;gap:10px;justify-content:center;min-height:50px;align-items:center}
+.uno{background:var(--r);color:#fff;font-size:24px;font-style:italic;padding:9px 28px;animation:pu .5s infinite alternate}
+@keyframes pu{to{transform:scale(1.14)}}
+.hand{display:flex;overflow-x:auto;padding:18px 12px 8px;min-height:124px;align-items:flex-end}
+.hand>.cd:first-child{margin-left:auto}.hand>.cd:last-child{margin-right:auto}
+.hand .cd{margin-left:-15px;opacity:.5;filter:saturate(.55);transition:transform .15s}
+.hand .cd.ok{opacity:1;filter:none;transform:translateY(-14px)}
+.cd{position:relative;display:block;flex:none;width:58px;height:88px;border-radius:9px;background:var(--c);border:3px solid var(--cr);box-shadow:0 3px 7px #000a,inset 0 0 0 1px #0004;color:#fff;font-weight:900;overflow:hidden}
+.cd:after{content:"";position:absolute;inset:0;background:linear-gradient(125deg,#fff7,#fff0 45%,#0003);pointer-events:none}
+.e{position:absolute;left:-10%;top:17%;width:120%;height:66%;background:var(--cr);border-radius:50%;transform:rotate(-24deg)}
+.cd b{position:absolute;inset:0;display:grid;place-items:center;font-size:30px;color:var(--c);text-shadow:1px 1px 0 #0003}
+.cd u{position:absolute;left:4px;top:2px;font-size:11px;text-decoration:none}
+.cd u.r{left:auto;right:4px;top:auto;bottom:2px;transform:rotate(180deg)}
+.w .e{background:conic-gradient(var(--r),var(--y),var(--g),var(--b),var(--r))}.w b{color:#fff;text-shadow:0 1px 3px #000}
+.bk{--c:#15151b}.bk:before{content:"UNO";position:absolute;inset:23% -10%;display:grid;place-items:center;background:var(--r);border-radius:50%;transform:rotate(-24deg);font:italic 900 17px/1 "Arial Black",sans-serif;color:var(--y);text-shadow:1px 1px 0 #000}
+.sm.cd{width:26px;height:39px;border-width:2px;border-radius:5px;margin-left:-16px;box-shadow:0 1px 3px #000a}.sm.cd:before{font-size:8px}
+.ov{position:fixed;inset:0;background:#000c;display:grid;place-items:center;z-index:5}
+.bx{background:#17352a;border:2px solid #fff3;padding:20px;border-radius:20px;text-align:center;display:flex;flex-direction:column;gap:10px;align-items:center;max-width:320px}
+.bx h3,.bx h2{margin:0}.cc{width:62px;height:62px;border-radius:50%;border:3px solid #fff;padding:0}
+.cs{display:flex;gap:8px;flex-wrap:wrap;justify-content:center}
+.k{width:20px;height:20px;padding:0;vertical-align:-5px}#nk{width:200px}
+@media (prefers-reduced-motion:reduce){*{animation:none!important}}
+</style></head><body><div id="app"></div><div id="md"></div>
+<script src="engine.js"></script>
+<script>
+const SERVER='wss://SEU-SERVIDOR.onrender.com'; // troque pelo endereço do seu servidor (veja o README)
+const $=s=>document.querySelector(s),CL=['#d72600','#ecd407','#379711','#0956bf'],SY=['0','1','2','3','4','5','6','7','8','9','⊘','⇄','+2','★','+4','⇆'],BN=['Você','Rex','Luna','Bia'],E=s=>String(s).replace(/[&<>"']/g,c=>'&#'+c.charCodeAt(0)+';');
+let V=null,WS=null,Q=null,saved={w:0,c:0,n:''};
+try{saved=Object.assign(saved,JSON.parse(localStorage.getItem('unoS')))}catch(e){}
+const sv=()=>{try{localStorage.setItem('unoS',JSON.stringify(saved))}catch(e){}};
+const g=Game({push(){if(g.G)show(g.view(0))},saved,sv});
+function go(a){if(WS){try{WS.send(JSON.stringify(a))}catch(e){}}else g.act(0,a)}
+/* ---------- interface ---------- */
+function face(c,ok,i){let y=SY[c[1]];return`<div class="cd${c[0]>3?' w':''}${ok?' ok':''}" data-a=pl data-i=${i} style="--c:${c[0]<4?CL[c[0]]:'#17171c'}"><i class=e></i><b>${y}</b><u>${y}</u><u class=r>${y}</u></div>`}
+function md(h){$('#md').innerHTML=h?`<div class=ov data-a=x><div class=bx>${h}</div></div>`:''}
+function show(v){V=v;v.at=Date.now();if(v.ov<0)show.c=0;else if(WS&&v.ov==v.me&&!show.c){show.c=1;saved.w++;sv()}if(!$('.gm'))$('#app').innerHTML='<div class=gm></div>';
+ let me=v.me,nm=i=>i==me?'Você':E(v.nm[i]),o=[1,2,3].map(j=>(me+j)%4),my=v.cur==me&&v.ov<0,sl=($('.hand')||{}).scrollLeft||0;
+ if(!my)md();
+ $('.gm').innerHTML=`<div class=op>${o.map(s=>`<div class="o${v.cur==s&&v.ov<0?' t':''}"><small>${nm(s)}</small><div class=fan>${'<i class="cd bk sm"></i>'.repeat(Math.min(v.h[s],9))}</div><b>${v.h[s]} ${v.h[s]==1?'carta':'cartas'}</b></div>`).join('')}</div>
+<div class=tb><div>${E(v.ms||'')}</div><div class=pl><div data-a=dr><div class="cd bk"></div></div><div class=top style="--k:${CL[v.col]}">${face(v.t,0,-1)}</div></div>
+<div>${v.dir>0?'↻':'↺'} cor <i class=dot style="background:${CL[v.col]}"></i> ${v.ch?'· combo '+v.ch+': jogue de '+Math.max(0,v.la-1)+' a '+Math.min(9,v.la+1):''} ${my&&(v.md||WS)?'<b id=tm></b>':''}</div></div>
+<div class=bt>${my&&!v.ch&&!v.dw?'<button data-a=dr>Comprar</button>':''}${my&&(v.ch||v.dw)?`<button data-a=en>${v.ch?'Finalizar vez':'Passar'}</button>`:''}${v.w[me]?'<button class=uno data-a=un>UNO!</button>':''}</div>
+<div class=hand>${v.m.map((c,i)=>face(c,v.ok[i],i)).join('')}</div>`;
+ $('.hand').scrollLeft=sl;
+ if(v.ov>=0)md(`<h2>${v.ov==me?'Você venceu! 🏆':nm(v.ov)+' venceu'}</h2><button class=alt data-a=mn>Voltar ao menu</button>`)}
+setInterval(()=>{let t=$('#tm');if(V&&t)t.textContent='⏱ '+Math.max(0,Math.ceil((V.tr-(Date.now()-V.at))/1000))},400);
+function lobby(msg){
+ $('#app').innerHTML=Q?`<div class=lb><h1>UNO<small>Sequência</small></h1>
+<p>Sala <b>${E(Q.c)}</b>${Q.pub?' · partida rápida':''} · ${Q.mode?'Caos':'Clássico'}</p><p>${Q.pl.map(E).join(', ')}</p>
+${Q.host&&!Q.pub?'<button class=alt data-a=st>Iniciar (robôs completam)</button>':`<p class=sm>${Q.pub?'Procurando jogadores… robôs completam as vagas em instantes.':'Aguardando o anfitrião iniciar…'}</p>`}
+<button data-a=lv>Sair</button><p class=sm>${E(msg||'')}</p></div>`
+:`<div class=lb><h1>UNO<small>Sequência</small></h1>
+<p>Sobre um 3 vale 2, 3 ou 4 de qualquer cor — e a sequência continua na mesma vez.<br>Vitórias: ${saved.w} · Maior combo: ${saved.c}</p>
+<button data-a=s0>Jogar contra robôs</button><button class=alt data-a=s1>Caos Relâmpago</button>
+<p class=sm>Caos: 13 s por jogada; combo de 4+ cartas faz todos comprarem 1.</p>
+<p><b>Online com o mundo todo</b></p>
+<input id=nk maxlength=12 placeholder="Seu apelido" value="${E(saved.n||'')}">
+<label class=sm><input type=checkbox class=k id=ch> Modo Caos</label>
+<button data-a=oq>Partida rápida</button><button class=alt data-a=oc>Criar sala privada</button>
+<div class=jn><input id=cd maxlength=4 placeholder="Código"><button data-a=oj>Entrar</button></div>
+<p class=sm>${E(msg||'')}</p></div>`}
+function start(m){if(WS)H.mn();g.start(BN.slice(),[0],m,[])}
+function online(m){if(WS)return;g.stop();let n=($('#nk').value||'').trim();saved.n=n;sv();m.n=n;m.m=$('#ch').checked?1:0;
+ if(SERVER.includes('SEU-SERVIDOR')){lobby('Configure o endereço do servidor no index.html (veja o README).');return}
+ lobby('Conectando… o servidor gratuito pode levar até 1 min para acordar.');
+ let w=new WebSocket(SERVER),k=0;WS=w;
+ w.onopen=()=>{k=1;w.send(JSON.stringify(m))};
+ w.onmessage=e=>{let d;try{d=JSON.parse(e.data)}catch(x){return}
+  if(d.t=='v'){Q=null;show(d.v)}else if(d.t=='r'){Q=d;V=null;lobby()}else if(d.t=='e'){H.mn();lobby(d.m)}};
+ w.onclose=()=>{if(WS===w){WS=null;Q=null;V=null;md();lobby(k?'Conexão perdida.':'Não consegui conectar ao servidor.')}};
+ setTimeout(()=>{if(!k&&WS===w)w.close()},70000)}
+const H={
+ pl(b){let i=+b.dataset.i;if(!V||!V.ok[i])return;let k=V.m[i][1];
+  if(k==13||k==14)md(`<h3>Escolha a cor</h3><div class=cs>${CL.map((c,j)=>`<button class=cc data-a=cl data-i=${i} data-j=${j} style="background:${c}" aria-label="cor ${j+1}"></button>`).join('')}</div>`);
+  else if(k==15)md(`<h3>Trocar de mão com quem?</h3>${[1,2,3].map(j=>(V.me+j)%4).map(s=>`<button data-a=tg data-i=${i} data-j=${s}>${E(V.nm[s])} (${V.h[s]})</button>`).join('')}`);
+  else go({t:'p',i})},
+ cl(b){md();go({t:'p',i:+b.dataset.i,col:+b.dataset.j})},
+ tg(b){md();go({t:'p',i:+b.dataset.i,tg:+b.dataset.j})},
+ dr(){if(V&&V.cur==V.me&&V.ov<0)go({t:'d'})},en(){go({t:'e'})},un(){go({t:'u'})},x(){md()},
+ mn(){md();g.stop();if(WS){let w=WS;WS=null;w.close()}Q=null;V=null;lobby()},
+ s0(){start(0)},s1(){start(1)},oq(){online({t:'q'})},oc(){online({t:'c'})},
+ oj(){let c=($('#cd').value||'').trim().toUpperCase();if(c.length==4)online({t:'j',c})},
+ st(){if(WS)WS.send('{"t":"s"}')},lv(){H.mn()}};
+document.addEventListener('click',e=>{let b=e.target.closest('[data-a]');if(b&&H[b.dataset.a])H[b.dataset.a](b)});
+setInterval(()=>g.tick(),250);lobby();
+if('serviceWorker' in navigator)addEventListener('load',()=>navigator.serviceWorker.register('sw.js').catch(()=>{}));
+if(!SERVER.includes('SEU-SERVIDOR'))fetch(SERVER.replace(/^ws/,'http'),{mode:'no-cors'}).catch(()=>{});
+</script></body></html>
