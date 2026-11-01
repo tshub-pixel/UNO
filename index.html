@@ -53,7 +53,7 @@ h1 small{display:block;font:700 15px "Trebuchet MS",sans-serif;color:#fff;text-s
 </style></head><body><div id="app"></div><div id="md"></div>
 <script src="engine.js"></script>
 <script>
-const SERVER='wss://SEU-SERVIDOR.onrender.com'; // troque pelo endereço do seu servidor (veja o README)
+const SERVER='wss://uno-joak.onrender.com';
 const $=s=>document.querySelector(s),CL=['#d72600','#ecd407','#379711','#0956bf'],SY=['0','1','2','3','4','5','6','7','8','9','⊘','⇄','+2','★','+4','⇆'],BN=['Você','Rex','Luna','Bia'],E=s=>String(s).replace(/[&<>"']/g,c=>'&#'+c.charCodeAt(0)+';');
 let V=null,WS=null,Q=null,saved={w:0,c:0,n:''};
 try{saved=Object.assign(saved,JSON.parse(localStorage.getItem('unoS')))}catch(e){}
@@ -114,5 +114,5 @@ const H={
 document.addEventListener('click',e=>{let b=e.target.closest('[data-a]');if(b&&H[b.dataset.a])H[b.dataset.a](b)});
 setInterval(()=>g.tick(),250);lobby();
 if('serviceWorker' in navigator)addEventListener('load',()=>navigator.serviceWorker.register('sw.js').catch(()=>{}));
-if(!SERVER.includes('SEU-SERVIDOR'))fetch(SERVER.replace(/^ws/,'http'),{mode:'no-cors'}).catch(()=>{});
+if(!SERVER.includes('uno-joak'))fetch(SERVER.replace(/^ws/,'http'),{mode:'no-cors'}).catch(()=>{});
 </script></body></html>
